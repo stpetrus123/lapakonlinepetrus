@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapak Santo Petrus Pekalongan</title>
+    <!-- Import Google Font: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #faf6f0; /* Warm Cream */
+            color: #2c221e;
+            padding-bottom: 90px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a2e1b, #7c4a27); /* Warm Cokelat Dark Gradient */
+            color: #ffffff;
+            padding: 2.2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(74, 46, 27, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-logo {
+            width: 85px;
+            height: auto;
+            margin-bottom: 0.8rem;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+        }
+
+        header h1 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.4rem;
+            color: #fff8f0;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            color: #f3e5d8;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigasi Filter Kategori & Toko */
+        .filter-section-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #8c6d58;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 0.6rem;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 1.2rem;
+            scrollbar-width: thin;
+        }
+
+        .filter-btn {
+            background: #ffffff;
+            border: 1px solid #e7d8c9;
+            padding: 9px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: #6b5344;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: #7c4a27;
+            color: #ffffff;
+            border-color: #7c4a27;
+            box-shadow: 0 4px 12px rgba(124, 74, 39, 0.25);
+        }
+
+        /* Panel Khusus Penjual / Aksi Toko */
+        .seller-action-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-seller-action {
+            background: #ffffff;
+            color: #7c4a27;
+            border: 1px dashed #7c4a27;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-seller-action:hover {
+            background: #fdf2e9;
+        }
+
+        /* Judul Pemisah Kategori Produk */
+        .category-section-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #3b2315;
+            margin: 2rem 0 1.2rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e7d8c9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Grid Produk */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(74, 46, 27, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #f0e6dc;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(74, 46, 27, 0.12);
+        }
+
+        /* Foto Produk Kotak (Square Aspect Ratio 1:1) */
+        .product-img-wrapper {
+            width: 100%;
+            padding-top: 100%;
+            position: relative;
+            background-color: #f7f1ea;
+        }
+
+        .product-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .badges-container {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .store-badge {
+            display: inline-block;
+            background: #fdf2e9;
+            color: #7c4a27;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid #f5dfce;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: #f3ece6;
+            color: #6b5344;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c221e;
+            margin-bottom: 6px;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: #7a6558;
+            margin-bottom: 12px;
+            line-height: 1.45;
+        }
+
+        .product-price {
+            font-size: 1.18rem;
+            font-weight: 800;
+            color: #8c4211;
+            margin-bottom: 12px;
+        }
+
+        .product-action {
+            padding: 1rem 1.2rem;
+            background: #faf6f0;
+            border-top: 1px solid #f0e6dc;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* Control Kuantitas Maksimal 20 */
+        .qty-input-group {
+            display: flex;
+            align-items: center;
+            border: 1px solid #d9c4b1;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .qty-input-group button {
+            background: #f3ece6;
+            border: none;
+            width: 30px;
+            height: 36px;
+            font-weight: bold;
+            color: #4a2e1b;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .qty-input-group button:hover {
+            background: #e7d8c9;
+        }
+
+        .qty-input {
+            width: 36px;
+            height: 36px;
+            border: none;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #2c221e;
+            -moz-appearance: textfield;
+        }
+
+        .qty-input::-webkit-outer-spin-button,
+        .qty-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .btn-add {
+            flex-grow: 1;
+            background: #7c4a27;
+            color: #ffffff;
+            border: none;
+            height: 36px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-add:hover {
+            background: #5c3519;
+        }
+
+        .btn-add:active {
+            transform: scale(0.98);
+        }
+
+        /* Floating Cart Button */
+        .cart-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #4a2e1b;
+            color: #ffffff;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(74, 46, 27, 0.3);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 99;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .cart-float:hover {
+            transform: scale(1.04);
+            background: #382112;
+        }
+
+        .cart-badge {
+            background: #d9534f;
+            color: white;
+            border-radius: 20px;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+        }
+
+        /* Modal Umum */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 34, 30, 0.65);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 480px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 1.6rem;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0e6dc;
+            padding-bottom: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .modal-header h3 {
+            font-size: 1.25rem;
+            color: #3b2315;
+            font-weight: 800;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #a89485;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0e6dc;
+        }
+
+        .cart-summary {
+            margin-top: 1rem;
+            padding-top: 12px;
+            border-top: 2px solid #e7d8c9;
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            color: #3b2315;
+        }
+
+        .form-group {
+            margin-top: 1.1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #4a2e1b;
+            margin-bottom: 6px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #d9c4b1;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #faf6f0;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #7c4a27;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(124, 74, 39, 0.12);
+        }
+
+        .btn-modal-submit {
+            width: 100%;
+            background: #7c4a27;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .btn-modal-submit:hover {
+            background: #5c3519;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background: #257a3e; /* Hijau Segar Kontak WA */
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .btn-checkout:hover {
+            background: #1b5b2e;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://i.ibb.co.com/zTmqXB3Q/LOGO-PAROKI.png" alt="Logo Paroki Santo Petrus Pekalongan" class="header-logo">
+        <h1>Lapak Santo Petrus Pekalongan</h1>
+        <p>Pesan Produk UMKM & Makanan Khas Langsung via WhatsApp</p>
+    </header>
+
+    <div class="container">
+        <!-- Fitur Tombol Khusus Penjual -->
+        <div class="seller-action-bar">
+            <button class="btn-seller-action" onclick="openAddStoreModal()">
+                🏪 + Buka Toko Baru
+            </button>
+            <button class="btn-seller-action" onclick="openAddMenuModal()">
+                🍽️ + Tambah Menu Toko
+            </button>
+        </div>
+
+        <!-- Filter Berdasarkan Kategori -->
+        <div class="filter-section-title">Pilih Kategori</div>
+        <div class="filter-container" id="category-filters"></div>
+
+        <!-- Filter Berdasarkan Toko -->
+        <div class="filter-section-title">Pilih Toko</div>
+        <div class="filter-container" id="store-filters"></div>
+
+        <!-- Catalog Container -->
+        <div id="catalog-container"></div>
+    </div>
+
+    <!-- Floating Button Keranjang -->
+    <button class="cart-float" onclick="openCart()">
+        🛒 Keranjang <span class="cart-badge" id="cart-count">0</span>
+    </button>
+
+    <!-- Modal Tambah Toko Baru -->
+    <div class="modal" id="add-store-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Pendaftaran Toko Baru</h3>
+                <button class="close-btn" onclick="closeAddStoreModal()">&times;</button>
+            </div>
+            <form id="add-store-form" onsubmit="processAddStore(event)">
+                <div class="form-group">
+                    <label for="new-store-name">Nama Toko / UMKM *</label>
+                    <input type="text" id="new-store-name" required placeholder="Contoh: Dapur Berkat">
+                </div>
+                <div class="form-group">
+                    <label for="new-store-wa">Nomor WhatsApp Toko (Format: 628...) *</label>
+                    <input type="text" id="new-store-wa" required placeholder="Contoh: 6281234567890">
+                </div>
+                <button type="submit" class="btn-modal-submit">Daftarkan Toko</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Tambah Menu / Produk Baru -->
+    <div class="modal" id="add-menu-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Tambah Menu Produk Toko</h3>
+                <button class="close-btn" onclick="closeAddMenuModal()">&times;</button>
+            </div>
+            <form id="add-menu-form" onsubmit="processAddMenu(event)">
+                <div class="form-group">
+                    <label for="target-store-select">Pilih Toko Anda *</label>
+                    <select id="target-store-select" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="new-menu-name">Nama Menu / Produk *</label>
+                    <input type="text" id="new-menu-name" required placeholder="Contoh: Nasi Kuning Spesial">
+                </div>
+                <div class="form-group">
+                    <label for="new-menu-category">Kategori *</label>
+                    <select id="new-menu-category" required>
+                        <option value="makanan">Makanan</option>
+                        <option value="minuman">Minuman</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="new-menu-price">Harga (Rp) *</label>
+                    <input type="number" id="new-menu-price" min="0" required placeholder="Contoh: 15000">
+                </div>
+                <div class="form-group">
+                    <label for="new-menu-desc">Deskripsi Produk *</label>
+                    <textarea id="new-menu-desc" rows="2" required placeholder="Deskripsi singkat produk..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="new-menu-img">URL Gambar / Foto Produk *</label>
+                    <input type="url" id="new-menu-img" required placeholder="https://contoh.com/gambar.jpg">
+                </div>
+                <button type="submit" class="btn-modal-submit">Simpan & Terbitkan Menu</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Checkout -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Keranjang Belanja</h3>
+                <button class="close-btn" onclick="closeCart()">&times;</button>
+            </div>
+
+            <div id="cart-items">
+                <p style="text-align: center; color: #a89485; padding: 1.5rem 0;">Keranjang belanja masih kosong.</p>
+            </div>
+
+            <div class="cart-summary">
+                <span>Total Biaya:</span>
+                <span id="cart-total-price">Rp 0</span>
+            </div>
+
+            <!-- Form Pemesan -->
+            <form id="checkout-form" onsubmit="processCheckout(event)">
+                <div class="form-group">
+                    <label for="cust-name">Nama Pemesan *</label>
+                    <input type="text" id="cust-name" required placeholder="Masukkan nama Anda">
+                </div>
+                <div class="form-group">
+                    <label for="cust-address">Alamat Pengiriman / Catatan Pesanan *</label>
+                    <textarea id="cust-address" rows="2" required placeholder="Masukkan alamat atau catatan pengiriman"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="payment-method">Metode Pembayaran (Non-Rekening) *</label>
+                    <select id="payment-method" required>
+                        <option value="Tunai / COD (Bayar di Tempat)">Tunai / COD (Bayar di Tempat)</option>
+                        <option value="QRIS / E-Wallet (Minta QRIS / No. E-Wallet via WA)">QRIS / E-Wallet (Minta QRIS/Nomor via WA)</option>
+                        <option value="Konfirmasi Kesepakatan di WA">Lainnya (Konfirmasi via WA)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-checkout">Pesan via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const initialStoresData = [
+            {
+                storeName: "SnackinAja",
+                whatsapp: "6287895775505",
+                products: [
+                    {
+                        id: "sa-1",
+                        name: "Churros Renyah",
+                        category: "makanan",
+                        desc: "Churros garing manis lengkap dengan sauce coklat.",
+                        price: 12000,
+                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl5LhzfsSFGpZgwG47jsaSuFTXMOx7EtOHDqLsXeSBCZicvX_-b4RkyEtm&s=10"
+                    },
+                    {
+                        id: "sa-2",
+                        name: "Cireng Ayam Suwir Pedas",
+                        category: "makanan",
+                        desc: "Luar garing kenyal, di dalamnya padat isian ayam suwir bumbu pedas nampol! Jajanan gurih pedas favorit yang bikin ketagihan terus.",
+                        price: 7000,
+                        image: "https://img-global.cpcdn.com/recipes/e3b0de81b9f35ec3/1200x630cq80/photo.jpg"
+                    },
+                    {
+                        id: "sa-3",
+                        name: "Cilok",
+                        category: "makanan",
+                        desc: "Kenyal, gurih, dan makin mantap dicocol bumbu kacang khas yang legit. Camilan santai yang selalu bikin nagih!.",
+                        price: 5000,
+                        image: "https://asset.kompas.com/crops/xRkRIQY0n_aq0fhq1V19PLgVACQ=/16x0:984x645/1200x800/data/photo/2023/06/14/648924a83bb35.jpeg"
+                    },
+                    {
+                        id: "sa-4",
+                        name: "Siomay Bandung",
+                        category: "makanan",
+                        desc: "Lengkap dengan pilihan isian favoritmu: telur, tahu, hingga kentang, disiram bumbu kacang kental yang gurih meresap. Mantap dinikmati hangat-hangat!.",
+                        price: 7000,
+                        image: "https://i.ibb.co.com/Vpq9qrKZ/Whats-App-Image-2026-10-08-01-58-47.jpg"
+                    },
+                    {
+                        id: "sa-5",
+                        name: "Cheese Roll",
+                        category: "makanan",
+                        desc: "Kulit pastry renyah berbalut keju & coklat lumer gurih di dalamnya. Perpaduan renyah dan lumer yang juara banget!.",
+                        price: 6000,
+                        image: "https://i.ibb.co.com/XfpYVFSf/Whats-App-Image-2026-10-08-02-02-09.jpg"
+                    },
+                    {
+                        id: "sa-6",
+                        name: "Batagor",
+                        category: "makanan",
+                        desc: "Luar garing renyah. Makin lengkap dengan siraman bumbu kacang",
+                        price: 5000,
+                        image: "https://rricoid-assets.obs.ap-southeast-4.myhuaweicloud.com/berita/Bintuhan/o/1758876941223-20231104-screenshot-20231104-123946-instagram/us8shjaah41mp3n.jpeg"
+                    },
+                    {
+                        id: "sa-7",
+                        name: "Basreng",
+                        category: "makanan",
+                        desc: "Irisan bakso goreng super renyah dengan pilihan bumbu melimpah: Balado, BBQ, Jagung Manis, Original, atau Daun Jeruk. Dijamin kriuk dan bikin nagih terus!.",
+                        price: 7000,
+                        image: "https://down-id.img.susercontent.com/file/id-11134207-7r991-lviy84fgqt3mac"
+                    },
+                    {
+                        id: "sa-8",
+                        name: "Mochi Kacang",
+                        category: "makanan",
+                        desc: "Kulit mochi super kenyal dan lembut dengan isian pasta kacang tanah manis gurih di dalamnya. Manisnya pas di gigitan pertama!.",
+                        price: 3000,
+                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt5_k3CCG3Lrjz6gzU-rbowkEYXc856EBEivB-nXyQyPAQWcwDvHLrQVQ&s=10"
+                    },
+                     {
+                        id: "sa-9",
+                        name: "Sempol Ayam",
+                        category: "makanan",
+                        desc: "Gurih daging ayam terasa di setiap gigitan, dibalut telur gurih lalu digoreng pas. Favorit semua usia yang bikin susah berhenti mengunyah!.",
+                        price: 7000,
+                        image: "https://awsimages.detik.net.id/api/wm/2025/07/15/sempol-ayam-1752592927075_169.jpeg?wid=60&w=1200&v=1&t=jpeg"
+                    },
+                    {
+                        id: "sa-10",
+                        name: "Ice Cream Home Made",
+                        category: "makanan",
+                        desc: "Lembut, manisnya pas, dan super creamy di mulut. Pilihan dessert dingin paling juara untuk menyegarkan harimu!.",
+                        price: 3000,
+                        image: "https://i.ibb.co.com/zWXHfkRr/Screenshot-2026-10-08-073347.png"
+                    },
+                ]
+            },
+            {
+                storeName: "Risoles Mak Itin",
+                whatsapp: "6285642823638",
+                products: [
+                    {
+                        id: "rmi-1",
+                        name: "Risoles Premium (Ham)",
+                        category: "makanan",
+                        desc: "Kulit renyah dengan isian Ragout, Telur, Smoked Ham (Non Halal) / bj.",
+                        price: 17500,
+                        image: "https://i.ibb.co.com/9mWqfRMy/Screenshot-2026-09-24-225018.png"
+                    },
+                    {
+                        id: "rmi-2",
+                        name: "Risoles Premium (Beef)",
+                        category: "makanan",
+                        desc: "Kulit renyah dengan isian Ragout, Telur, Smoked Beef / bj.",
+                        price: 17500,
+                        image: "https://i.ibb.co.com/9mWqfRMy/Screenshot-2026-09-24-225018.png"
+                    },
+                    {
+                        id: "rmi-3",
+                        name: "Risoles Premium (Chicken)",
+                        category: "makanan",
+                        desc: "Kulit renyah dengan isian Ragout, Telur, Smoked Chicken / bj.",
+                        price: 17500,
+                        image: "https://i.ibb.co.com/9mWqfRMy/Screenshot-2026-09-24-225018.png"
+                    }
+                ]
+            },
+            {
+                storeName: "Pempek Tengiri",
+                whatsapp: "628112930048",
+                products: [
+                    {
+                        id: "sm-1",
+                        name: "Kapal Selam",
+                        category: "makanan",
+                        desc: "Pempek Kapal selam Isi Telur ayam.",
+                        price: 10000,
+                        image: "https://i.ibb.co.com/XrJscGn7/Screenshot-2026-09-25-224227.png"
+                    },
+                    {
+                        id: "sm-2",
+                        name: "Lenjer",
+                        category: "makanan",
+                        desc: "Pempek panjang dengan tekstur kenyal.",
+                        price: 10000,
+                        image: "https://i.ibb.co.com/Q7gyrGV0/Screenshot-2026-09-25-224555.png"
+                    },
+                    {
+                        id: "sm-3",
+                        name: "Lenggang",
+                        category: "makanan",
+                        desc: "Irisan pempek lenjer yang didadar telur.",
+                        price: 15000,
+                        image: "https://i.ibb.co.com/pvYTCggP/Screenshot-2026-09-25-225304.png"
+                    },
+                    {
+                        id: "sm-4",
+                        name: "Kapal selam jumbo",
+                        category: "makanan",
+                        desc: "Pempek kapal selam isi telur ayam dengan ukuran besar.",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/Ly2mYCs/Screenshot-2026-09-25-225713.png"
+                    }
+                ]
+            },
+            {
+                storeName: "Nani Snack",
+                whatsapp: "6281392200168",
+                products: [
+                    {
+                        id: "tbh-1",
+                        name: "Pastel Filipine",
+                        category: "makanan",
+                        desc: "Nikmati kelezatan Pastel Filipina krispi dalam Paket Isi 3. Dijamin ketagihan!",
+                        price: 20000,
+                        image: "https://i.ibb.co.com/fJtBydH/Screenshot-2026-09-25-230046.png"
+                    },
+                    {
+                        id: "tbh-2",
+                        name: "Wedang Kacang + Cakwe",
+                        category: "minuman",
+                        desc: "Manis lembut kuah Wedang Kacang dipadu renyah gurihnya Cakwe. Camilan hangat yang pas untuk menceriakan hari Anda!",
+                        price: 17000,
+                        image: "https://i.ibb.co.com/7xx4BCmc/Screenshot-2026-09-25-231534.png"
+                    },
+                    {
+                        id: "tbh-3",
+                        name: "Bubur Sumsum Candil",
+                        category: "makanan",
+                        desc: "Manis Gurih Lumer di Mulut!",
+                        price: 13000,
+                        image: "https://i.ibb.co.com/z071mb3/Screenshot-2026-09-25-232129.png"
+                    },
+                    {
+                        id: "tbh-4",
+                        name: "Selada Bangkok",
+                        category: "makanan",
+                        desc: "Soto berbumbu tauco khas dengan potongan daging/babat sapi segar.",
+                        price: 22000,
+                        image: "https://i.ibb.co.com/r2W0ZGKX/Screenshot-2026-09-25-232356.png"
+                    },
+                    {
+                        id: "tbh-5",
+                        name: "Zuppa Soup mini",
+                        category: "makanan",
+                        desc: "Puff pastry renyah mengembang dipadu sup krim gurih nan lembut. Porsi mini yang pas untuk ganjal lapar kapan saja!",
+                        price: 15000,
+                        image: "https://i.ibb.co.com/1Gm3JwLv/Screenshot-2026-09-25-232519.png"
+                    },
+                    {
+                        id: "tbh-6",
+                        name: "Galantine",
+                        category: "makanan",
+                        desc: "Sajian klasik Galantine dengan saus spesial yang siap memanjakan selera makan Anda.",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/35XXLSfC/Screenshot-2026-09-25-233551.png"
+                    },
+                    {
+                        id: "tbh-7",
+                        name: "Soes Vla",
+                        category: "makanan",
+                        desc: "Nikmati kelezatan Soes Vla manis nan lembut dalam Paket Isi 3. Teman pas buat ngopi!",
+                        price: 15000,
+                        image: "https://img-global.cpcdn.com/recipes/eb68beb419e599f0/680x781cq80/kue-sus-vla-vanila-foto-resep-utama.jpg"
+                    },
+                    {
+                        id: "tbh-8",
+                        name: "Asinan Bogor",
+                        category: "makanan",
+                        desc: "Sajian otentik Asinan Bogor yang pas banget buat nyegerin hari kamu.",
+                        price: 15000,
+                        image: "https://img-global.cpcdn.com/recipes/b14a9db83e8794d6/1200x630cq80/photo.jpg"
+                    },
+                    {
+                        id: "tbh-9",
+                        name: "Gurame Goreng/Bakar",
+                        category: "makanan",
+                        desc: "Pilih Gurame Goreng yang krispi renyah atau Gurame Bakar dengan bumbu manis gurih yang meresap.",
+                        price: 50000,
+                        image: "https://i.ibb.co.com/Vc2cPj0D/Screenshot-2026-09-25-234956.png"
+                    },
+                    {
+                        id: "tbh-10",
+                        name: "Ayam kalasan",
+                        category: "makanan",
+                        desc: "Kelembutan dan kelezatan cita rasa otentik Ayam Kalasan siap menemani santap Anda.",
+                        price: 25000,
+                        image: "https://cdn.yummy.co.id/content-images/images/20210127/5J4ytqJRDE7dMyWLccKtT4GBHTphVAHa-31363131373536363334d41d8cd98f00b204e9800998ecf8427e.jpg?x-oss-process=image/resize,w_388,h_388,m_fixed,x-oss-process=image/format,webp"
+                    },
+                    {
+                        id: "tbh-11",
+                        name: "Salad Buah",
+                        category: "makanan",
+                        desc: "Nikmati kesegaran Salad Buah spesial untuk mood booster dan camilan sehatmu hari ini.",
+                        price: 15000,
+                        image: "https://akcdn.detik.net.id/visual/2022/06/23/cara-membuat-salad-buah-yang-enak-dan-praktis_11.jpeg?w=720&q=90"
+                    },
+                    {
+                        id: "tbh-12",
+                        name: "Brokoli Tofu Saos Tiram",
+                        category: "makanan",
+                        desc: "Perpaduan sempurna antara tofu sutra yang lembut dan brokoli krispi dengan siraman saus tiram gurih.",
+                        price: 22000,
+                        image: "https://i.ibb.co.com/rf1jZxRF/Screenshot-2026-09-25-235348.png"
+                    },
+                    {
+                        id: "tbh-13",
+                        name: "Fuyunghai Ayam Udang",
+                        category: "makanan",
+                        desc: "Nikmati kelezatan Fuyunghai Ayam Udang spesial yang pas untuk santap bersama keluarga.",
+                        price: 25000,
+                        image: "https://awsimages.detik.net.id/community/media/visual/2021/03/28/fuyunghai-ayam-dan-udang_43.jpeg?w=480"
+                    },
+                    {
+                        id: "tbh-14",
+                        name: "Mie Goreng (Mie telur)",
+                        category: "makanan",
+                        desc: "Sajian klasik Mie Goreng Telur lezat yang siap memanjakan lidah kapan saja.",
+                        price: 25000,
+                        image: "https://assets.dapurumami.com/uploads/recipe/mie-goreng-simple-z9n3yryq-91cc6abc28690cc635f7d56921b82963.webp"
+                    },
+                    {
+                        id: "tbh-15",
+                        name: "Mie Loo",
+                        category: "makanan",
+                        desc: "Semangkuk Mie Loo hangat dengan kuah kental berkaldu kaya rempah.",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/mCQ3F6LK/Screenshot-2026-09-25-235848.png"
+                    },
+                    {
+                        id: "tbh-16",
+                        name: "Bakmoy Ayam",
+                        category: "makanan",
+                        desc: "Sajian nyaman Nasi Bakmoy Ayam khas yang ramah di perut.",
+                        price: 22000,
+                        image: "https://i.ibb.co.com/C5Wm8sJH/Screenshot-2026-09-26-000200.png"
+                    },
+                    {
+                        id: "tbh-17",
+                        name: "Timlo solo",
+                        category: "makanan",
+                        desc: "Nikmati kelezatan Timlo Solo komplit yang pas untuk menghangatkan hari Anda.",
+                        price: 22000,
+                        image: "https://i.ibb.co.com/LD8RCbbM/Screenshot-2026-09-26-000308.png"
+                    }
+                ]
+            },
+            {
+                storeName: "Chirstina Cake",
+                whatsapp: "6285701670328",
+                products: [
+                    {
+                        id: "loc-1",
+                        name: "Kue Mini Simple in box",
+                        category: "makanan",
+                        desc: "Kue Mini Simple in Box (diameter 10 cm, tinggi 5 cm).",
+                        price: 50000,
+                        image: "https://i.pinimg.com/1200x/03/1f/8e/031f8e6a0f5acd180cdbb9c4fd7e9c97.jpg"
+                    },
+                    {
+                        id: "loc-2",
+                        name: "Kue mini simple on board d12 t6",
+                        category: "makanan",
+                        desc: "Kue Mini Simple On Board (diameter 12 cm, tinggi 6 cm).",
+                        price: 75000,
+                        image: "https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2021/11/4/6d2ed08b-f273-490b-939e-a48f05a3c625.jpg~tplv-aphluv4xwc-resize-jpeg:700:0.jpg"
+                    },
+                    {
+                        id: "loc-3",
+                        name: "Kue krim lukis d14 t6",
+                        category: "makanan",
+                        desc: "Kue Krim Lukis d14 t6. Bebas request desain lukisan krim.",
+                        price: 110000,
+                        image: "https://i.ibb.co.com/1Y3VXVgL/Screenshot-2026-09-26-002953.png"
+                    },
+                    {
+                        id: "loc-4",
+                        name: "Kue krim lukis d14 t12",
+                        category: "makanan",
+                        desc: "Kue Krim Lukis d14 t12. Tampilan mewah dengan rasa konsisten.",
+                        price: 145000,
+                        image: "https://i.ibb.co.com/Ngw8NHjk/Screenshot-2026-09-26-003502.png"
+                    },
+                    {
+                        id: "loc-5",
+                        name: "Kue krim + topper print d14 t12",
+                        category: "makanan",
+                        desc: "Kue Krim + Topper Print (diameter 14 cm, tinggi 12 cm).",
+                        price: 165000,
+                        image: "https://i.ibb.co.com/Ngw8NHjk/Screenshot-2026-09-26-003502.png"
+                    },
+                    {
+                        id: "loc-6",
+                        name: "Kue krim + mainan d14 t12",
+                        category: "makanan",
+                        desc: "Kue Krim + Mainan (diameter 14 cm, tinggi 12 cm).",
+                        price: 185000,
+                        image: "https://i.ibb.co.com/jv9xmyGM/Screenshot-2026-09-26-004018.png"
+                    },
+                    {
+                        id: "loc-7",
+                        name: "Kue krim + fondant d14 t12",
+                        category: "makanan",
+                        desc: "Kue Krim + Fondant (diameter 14 cm, tinggi 12 cm).",
+                        price: 250000,
+                        image: "https://i.ibb.co.com/WvzG1dGx/Screenshot-2026-09-26-004358.png"
+                    }
+                ]
+            },
+            {
+                storeName: "Willow's",
+                whatsapp: "6281805993003",
+                products: [
+                    {
+                        id: "wl-1",
+                        name: "Brownies Cheese cake 1 loyang full",
+                        category: "makanan",
+                        desc: "Brownies Cheesecake 1 Loyang Full Premium. Perpaduan fudgy brownies cokelat pekat dengan lapisan cheesecake panggang gurih dan creamy.",
+                        price: 265000,
+                        image: "https://i.ibb.co.com/FbjLBLYq/Screenshot-2026-09-26-005051.png"
+                    },
+                    {
+                        id: "wl-2",
+                        name: "Cheese cake aluminium foil isi 6",
+                        category: "makanan",
+                        desc: "Manisnya pas, teksturnya super creamy dan lumer di mulut dalam gigitan pertama!",
+                        price: 200000,
+                        image: "https://i.ibb.co.com/m5pTnrSw/Screenshot-2026-10-05-115808.png"
+                    },
+                    {
+                        id: "wl-3",
+                        name: "Cheese cake aluminium foil isi 4",
+                        category: "makanan",
+                        desc: "Manisnya pas, teksturnya super creamy dan lumer di mulut dalam gigitan pertama!",
+                        price: 140000,
+                        image: "https://i.ibb.co.com/mVD7MCcY/Screenshot-2026-10-05-120802.png"
+                    },
+                    {
+                        id: "wl-4",
+                        name: "Paket Hemat isi 4",
+                        category: "makanan",
+                        desc: "Manisnya pas, teksturnya super creamy dan lumer di mulut dalam gigitan pertama!",
+                        price: 85000,
+                        image: "https://i.ibb.co.com/gL0B8517/Screenshot-2026-10-05-120452.png"
+                    },
+                    {
+                        id: "wl-6",
+                        name: "Cheese Stick | 60gr",
+                        category: "makanan",
+                        desc: "Gurih, renyah, dan berasa banget kejunya! Camilan cheese stick renyah favorit siap nemenin hari kamu.",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/G33wytCq/Screenshot-2026-10-05-120957.png"
+                    },
+                    {
+                        id: "wl-7",
+                        name: "Cheese Stick | 150gr",
+                        category: "makanan",
+                        desc: "Gurih, renyah, dan berasa banget kejunya! Camilan cheese stick renyah favorit siap nemenin hari kamu.",
+                        price: 55000,
+                        image:  "https://i.ibb.co.com/xKqfS8WF/Screenshot-2026-10-08-022750.png"
+                    },
+                    {
+                        id: "wl-8",
+                        name: "Cheese Stick | 250gr",
+                        category: "makanan",
+                        desc: "Gurih, renyah, dan berasa banget kejunya! Camilan cheese stick renyah favorit siap nemenin hari kamu.",
+                        price: 85000,
+                        image: "https://i.ibb.co.com/zh4Q47x9/Screenshot-2026-10-08-022956.png"
+                    },
+                    {
+                        id: "wl-9",
+                        name: "Cheese Stick | 350gr",
+                        category: "makanan",
+                        desc: "Gurih, renyah, dan berasa banget kejunya! Camilan cheese stick renyah favorit siap nemenin hari kamu.",
+                        price: 110000,
+                        image: "https://i.ibb.co.com/xKqfS8WF/Screenshot-2026-10-08-022750.png"
+                    }
+                ]
+            },
+            {
+                storeName: "Soto Ayam Semarang Mas Tri",
+                whatsapp: "6285713303001",
+                products: [
+                    {
+                        id: "ck-1",
+                        name: "Soto Kecil",
+                        category: "makanan",
+                        desc: "Soto ayam khas Semarang gurih dan lezat.",
+                        price: 8000,
+                        image: "https://i.ibb.co.com/k6Ps13Hn/Whats-App-Image-2026-09-20-at-16-05-20.jpg"
+                    },
+                    {
+                        id: "ck-2",
+                        name: "Soto + Nasi Kecil",
+                        category: "makanan",
+                        desc: "Soto ayam Semarang disajikan lengkap dengan nasi hangat.",
+                        price: 9000,
+                        image: "https://i.ibb.co.com/k6Ps13Hn/Whats-App-Image-2026-09-20-at-16-05-20.jpg"
+                    },
+                     {
+                        id: "ck-3",
+                        name: "Soto Nasi Pisah Kecil",
+                        category: "makanan",
+                        desc: "Soto ayam Semarang disajikan lengkap dengan nasi hangat.",
+                        price: 11000,
+                        image: "https://i.ibb.co.com/k6Ps13Hn/Whats-App-Image-2026-09-20-at-16-05-20.jpg"
+                    },
+                    {
+                        id: "ck-4",
+                        name: "Soto Besar",
+                        category: "makanan",
+                        desc: "Soto ayam Semarang gurih & lezat.",
+                        price: 9000,
+                        image: "https://i.ibb.co.com/k6Ps13Hn/Whats-App-Image-2026-09-20-at-16-05-20.jpg"
+                    },
+                    {
+                        id: "ck-5",
+                        name: "Soto + Nasi Besar",
+                        category: "makanan",
+                        desc: "Soto ayam Semarang disajikan lengkap dengan nasi hangat.",
+                        price: 11000,
+                        image: "https://i.ibb.co.com/k6Ps13Hn/Whats-App-Image-2026-09-20-at-16-05-20.jpg"
+                    },
+                    {
+                        id: "ck-6",
+                        name: "Soto Nasi Besar",
+                        category: "makanan",
+                        desc: "Soto ayam Semarang disajikan lengkap dengan nasi hangat.",
+                        price: 13000,
+                        image: "https://i.ibb.co.com/k6Ps13Hn/Whats-App-Image-2026-09-20-at-16-05-20.jpg"
+                    },
+                     {
+                        id: "ck-7",
+                        name: "Sate Usus",
+                        category: "makanan",
+                        desc: "Gurih, kenyal, dan bikin nagih! Sate usus bumbu meresap siap jadi amunisi cemilan pas lagi lapar.",
+                        price: 3000,
+                        image: "https://i.ibb.co.com/h17FjGzK/IL1-VTDR7-Rlw-NA0y-G6-GKXAa-Es-No-Wgs-LRt-31363933333737333031d41d8cd98f00b204e9800998ecf8427e.webp"
+                    },
+                    {
+                        id: "ck-8",
+                        name: "Sate Puyuh",
+                        category: "makanan",
+                        desc: "Satu tusuk nggak pernah cukup! Telur puyuh manis gurih yang meresap sempurna, pas banget buat pelengkap santap harimu.",
+                        price: 3000,
+                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkJNRtzSrWng6OQzv-dT81iAhf9IqP080-o5yGbdF1tiOzEzDzm8v9FU0&s=10"
+                    },
+                    {
+                        id: "ck-9",
+                        name: "Perkedel",
+                        category: "makanan",
+                        desc: "Luar renyah, dalam super lembut! Perkedel kentang kaya bumbu yang bikin setiap suapan makin mantap.",
+                        price: 3000,
+                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc0szu-l5emTwdGUVjBRHUMHQiRQbgJaAQcFg1waQVOZxh8K_0OrHY8rhk&s=10."
+                    },
+                     {
+                        id: "ck-10",
+                        name: "Tahu Bacem",
+                        category: "makanan",
+                        desc: "Manis legitnya meresap sampai ke dalam! Tahu bacem lembut nan gurih, jodoh paling pas buat nasi hangat.",
+                        price: 3000,
+                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUdheBQ9k8x-OuY0nTAGLzFf0K3ZiZJZnHnw3sf_hGkrpSUip-shu2Gbc&s=10"
+                    },
+                     {
+                        id: "ck-11",
+                        name: "Sosis Solo",
+                        category: "makanan",
+                        desc: "Kulit lembut dengan isian daging ayam gurih yang padat! Sekali gigit Sosis Solo, langsung bikin ketagihan.",
+                        price: 4000,
+                        image: "https://awsimages.detik.net.id/community/media/visual/2023/05/01/resep-sosis-solo-isi-ayam_43.jpeg?w=1200"
+                    },
+                    {
+                        id: "ck-12",
+                        name: "Misoa",
+                        category: "makanan",
+                        desc: "Tekstur lembut dengan kuah gurih yang hangat di tenggorokan. Misoa hangat, pilihan terbaik pas butuh yang segar-segar!.",
+                        price: 4000,
+                        image: "https://img-global.cpcdn.com/recipes/d8ad95713724dfd6/1200x630cq80/photo.jpg"
+                    },
+                    {
+                        id: "ck-13",
+                        name: "Lumpia Semarang",
+                        category: "makanan",
+                        desc: "Renyah di luar, isian rebung dan ayamnya melimpah! Cita rasa khas Lumpia Semarang yang gurih-manis siap memanjakan lidahmu.",
+                        price: 4000,
+                        image: "https://nibble-images.b-cdn.net/nibble/original_images/lumpia_mbak_lien_09102156d1.jpg"
+                    },
+                    {
+                        id: "ck-14",
+                        name: "Tempe Goreng",
+                        category: "makanan",
+                        desc: "Sederhana tapi bikin kangen! Tempe goreng hangat yang renyah dan gurih, pelengkap wajib di setiap hidangan.",
+                        price: 1000,
+                        image: "https://asset.kompas.com/crops/P9McnIhepGP7MPTUfplFZb6aYxQ=/1x0:617x411/1200x800/data/photo/2021/08/09/6111235a9b7b2.jpg"
+                    },
+                    {
+                        id: "ck-15",
+                        name: "Kerupuk",
+                        category: "makanan",
+                        desc: "Kriuknya nggak pernah gagal! Kerupuk renyah penambah selera makan, bikin suasana makan makin ramai.",
+                        price: 1000,
+                        image: "https://asset.kompas.com/crops/DVcRLQ4MxJhc2teB8GdNM4DDSco=/9x1:989x655/1200x800/data/photo/2020/02/21/5e5008d10c825.jpg"
+                    },
+                    {
+                        id: "ck-16",
+                        name: "Jeruk/ Es Jeruk",
+                        category: "minuman",
+                        desc: "Segarnya perasan jeruk asli! Pas banget buat hilangin dahaga dan bikin harimu makin segar kembali.",
+                        price: 5000,
+                        image: "https://cdn1-production-images-kly.akamaized.net/2bUdwGUydtL50AOEMnCHNkD7FYQ=/469x625/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/4777522/original/071308500_1710839241-iced-orange-cocktail-table__2_.jpg"
+                    },
+                    {
+                        id: "ck-17",
+                        name: "Teh/ Es Teh Manis",
+                        category: "minuman",
+                        desc: "Pilihan tepat buat yang suka kesegaran alami tanpa pemanis. Teh hangat atau es teh tawar siap netralin rasa usai makan!.",
+                        price: 3000,
+                        image: "https://asset.kompas.com/crops/9iB_ruTEMU7otPYnbCNVng8zhrQ=/0x0:4939x3293/1200x800/data/photo/2022/09/25/63300cfd403f0.jpg"
+                    },
+                     {
+                        id: "ck-18",
+                        name: "Teh/ Es Tawar",
+                        category: "minuman",
+                        desc: "Teh hangat atau es teh tawar siap netralin rasa usai makan!.",
+                        price: 2000,
+                        image: "https://asset.kompas.com/crops/9iB_ruTEMU7otPYnbCNVng8zhrQ=/0x0:4939x3293/1200x800/data/photo/2022/09/25/63300cfd403f0.jpg"
+                    },
+                    {
+                        id: "ck-19",
+                        name: "Air Es",
+                        category: "minuman",
+                        desc: "Dingin, segar, dan langsung tuntasin haus seketika! Paling pas dinikmati bareng sajian favoritmu.",
+                        price: 2000,
+                        image: "https://cdn0-production-images-kly.akamaized.net/rdWGrObXKw4C0_nsb4c9pA8aS5c=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1455884/original/006927100_1483450303-Minum-Air-Dingin-Bisa-Bikin-Langsing-benarkah.jpg"
+                    },
+                     {
+                        id: "ck-20",
+                        name: "Kopi",
+                        category: "minuman",
+                        desc: "Aroma mantap yang siap bangkitkan semangat! Teman setia buat melek, fokus, dan nemenin waktu santaimu.",
+                        price: 3000,
+                        image: "https://images.alodokter.com/dk0z4ums3/image/upload/v1787287207/attached_image/kopi-tanpa-ampas-terbaik-untuk-usir-ngantuk.jpg"
+                    },
+                    {
+                        id: "ck-21",
+                        name: "Air Putih",
+                        category: "minuman",
+                        desc: "Kesegaran paling murni untuk tubuhmu. Jangan lupa penuhi kebutuhan cairan hari ini, ya!",
+                        price: 1000,
+                        image: "https://asset.kompas.com/crops/uZWR_wvc30muG5Ujk8NezbjG8rg=/0x109:800x642/1200x800/data/photo/2021/12/14/61b88f1401890.jpg"
+                    },
+                    {
+                        id: "ck-22",
+                        name: "Soto Bungkus",
+                        category: "makanan",
+                        desc: "Soto ayam Semarang gurih & lezat",
+                        price: 11000,
+                        image: "https://i.ibb.co.com/k6Ps13Hn/Whats-App-Image-2026-09-20-at-16-05-20.jpg"
+                    },
+                    {
+                        id: "ck-23",
+                        name: "Soto + Nasi Bungkus",
+                        category: "makanan",
+                        desc: "Soto ayam Semarang disajikan lengkap dengan nasi hangat.",
+                        price: 14000,
+                        image: "https://i.ibb.co.com/k6Ps13Hn/Whats-App-Image-2026-09-20-at-16-05-20.jpg"
+                    }
+                ]
+            },
+            {
+                storeName: "Lusia Snack",
+                whatsapp: "6281226556162",
+                products: [
+                    {
+                        id: "ga-1",
+                        name: "Puding Fla",
+                        category: "makanan",
+                        desc: "Manisnya pas dengan siraman fla vanila yang super creamy dan lumer di mulut. Puding lembut penyegar hari!.",
+                        price: 5000,
+                        image: "https://i.ibb.co.com/bR7Sk18R/Screenshot-2026-09-19-003911.png"
+                    },
+                    {
+                        id: "ga-2",
+                        name: "Marmer Cake | 18×18cm",
+                        category: "makanan",
+                        desc: "Paduan rasa cokelat dan vanila klasik yang empuk banget di tiap gigitan. Teman ngeteh paling elegan!.",
+                        price: 40000,
+                        image: "https://i.ibb.co.com/PsR1Zh4r/Screenshot-2026-09-21-102703.png"
+                    },
+                    {
+                        id: "ga-3",
+                        name: "Marmer Cake | 22×10cm",
+                        category: "makanan",
+                        desc: "Paduan rasa cokelat dan vanila klasik yang empuk banget di tiap gigitan. Teman ngeteh paling elegan!.",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/PsR1Zh4r/Screenshot-2026-09-21-102703.png"
+                    },
+
+                    {
+                        id: "ga-4",
+                        name: "Fudgy Brownies | 18×18cm",
+                        category: "makanan",
+                        desc: "Tekstur shiny crust di luar, padat dan fudgy di dalam dengan cokelat pekat yang nendang banget. Surga buat pecinta cokelat!.",
+                        price: 50000,
+                        image: "https://i.ibb.co.com/Q3tWyCHd/Screenshot-2026-09-21-103127.png"
+                    },
+                    {
+                        id: "ga-5",
+                        name: "Fudgy Brownies | 6×6cm / Potong",
+                        category: "makanan",
+                        desc: "Tekstur shiny crust di luar, padat dan fudgy di dalam dengan cokelat pekat yang nendang banget. Surga buat pecinta cokelat!.",
+                        price: 6000,
+                        image: "https://i.ibb.co.com/Q3tWyCHd/Screenshot-2026-09-21-103127.png"
+                    },
+                    {
+                        id: "ga-6",
+                        name: "Mie TekTek",
+                        category: "makanan",
+                        desc: "Gurihnya kuah kental berpadu bumbu khas abang-abang, lengkap dengan telur dan suwiran ayam. Hangatnya bikin nagih!.",
+                        price: 15000,
+                        image: "https://i.ibb.co.com/W4Cjm7zs/Screenshot-2026-09-21-103403.png"
+                    },
+                    {
+                        id: "ga-7",
+                        name: "Mie Ayam Bakso + Pangsit Goreng",
+                        category: "makanan",
+                        desc: "Paket lengkap juara! Mie kenyal berbalur minyak ayam gurih, dipadu bakso mantap dan kriuknya pangsit goreng renyah. Dijamin puas!.",
+                        price: 17000,
+                        image:"https://i.ibb.co.com/jv9vYT9K/Screenshot-2026-10-05-174648.png"
+                    },
+                ]
+            },
+            {
+                storeName: "Home Made",
+                whatsapp: "6289514607735",
+                products: [
+                    {
+                        id: "oj-1",
+                        name: "Chicken Nugget",
+                        category: "makanan",
+                        desc: "Krispi di luar, lembut dan juicy di dalam! Dibuat dari daging ayam pilihan tanpa pengawet, aman dan disukai anak-anak maupun dewasa. Yuk, stok di rumah sekarang!",
+                        price: 30000,
+                        image: "https://i.ibb.co.com/vpSZ3Wt/Screenshot-2026-09-18-151355.png"
+                    },
+                    {
+                        id: "oj-2",
+                        name: "Cheese Ball Nugget",
+                        category: "makanan",
+                        desc: "Sensasi lumer keju di dalam gigitan pertama! Perpaduan nugget gurih dengan lelehan keju mozzarella yang bikin nagih terus. Cocok banget buat cemilan sore hari!",
+                        price: 30000,
+                        image: "https://i.ibb.co.com/jPb1mdNb/Screenshot-2026-09-18-152701.png"
+                    },
+                    {
+                        id: "oj-3",
+                        name: "Ayam Bakar",
+                        category: "makanan",
+                        desc: "Bumbu meresap sempurna hingga ke tulang dengan aroma bakaran yang menggugah selera! Disajikan fresh setiap hari. Dijamin bikin nambah nasi terus!",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/Lhgw3Spj/Screenshot-2026-09-18-153209.png"
+                    },
+                    {
+                        id: "oj-4",
+                        name: "Udang Goreng Mentega | isi 10 pcs",
+                        category: "makanan",
+                        desc: "Udang segar pilihan berpadu dengan gurih dan manisnya saus mentega khas rumahan. Rasanya mewah dan bikin ketagihan sejak suapan pertama!",
+                        price: 45000,
+                        image: "https://i.ibb.co.com/s9CcY9mP/Screenshot-2026-09-18-154435.png"
+                    },
+                    {
+                        id: "oj-5",
+                        name: "Arem-Arem | isi 5 pcs",
+                        category: "makanan",
+                        desc: "Gurihnya santan dan isian yang sedap dibungkus rapi dalam balutan daun pisang. Teman ngopi atau ngeteh paling pas dan mengenyangkan!",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/4Z8d9q7H/Screenshot-2026-09-18-155222.png"
+                    },
+                    {
+                        id: "oj-6",
+                        name: "Nasi Bakar Ayam Suwir Kemangi",
+                        category: "makanan",
+                        desc: "Wangi daun kemangi berpadu sempurna dengan gurihnya nasi berbumbu dan suwir ayam pedas manis. Sekali buka daunnya, langsung bikin lapar!",
+                        price: 15000,
+                        image: "https://i.ibb.co.com/F405Nysb/Screenshot-2026-09-18-155835.png"
+                    },
+                    {
+                        id: "oj-7",
+                        name: "Udang Tempura | isi 10 pcs",
+                        category: "makanan",
+                        desc: "Udang segar dibalut tepung tipis renyah ala restoran Jepang, dibuat secara higienis di rumah. Renyah di luar, manis gurih di dalam!",
+                        price: 45000,
+                        image: "https://i.ibb.co.com/1G9THVHt/Screenshot-2026-09-18-161512.png"
+                    },
+                    {
+                        id: "oj-8",
+                        name: "Ayam Goreng Lengkuas",
+                        category: "makanan",
+                        desc: "Ayam empuk dengan taburan bumbu lengkuas gurih yang melimpah dan renyah. Aroma rempahnya khas masakan rumahan banget!",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/Z6gQ9B2q/Screenshot-2026-09-18-160339.png"
+                    },
+                     {
+                        id: "oj-9",
+                        name: "Korket Sayur | isi 5 pcs",
+                        category: "makanan",
+                        desc: "Kulit luar renyah berpadu dengan lembutnya kentang dan isian sayuran segar yang kaya rasa. Cemilan sehat favorit keluarga!",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/ZPhPBSr/Screenshot-2026-09-18-222743.png"
+                    },
+                    {
+                        id: "oj-10",
+                        name: "Potato Cheese Ball | isi 10 pcs",
+                        category: "makanan",
+                        desc: "Bulatan kentang lembut dengan keju lumer di dalamnya. Digoreng garing pas hangat, camilan sempurna untuk menemani waktu santai Anda!",
+                        price: 40000,
+                        image: "https://i.ibb.co.com/whcwqP8z/Screenshot-2026-09-18-224244.png"
+                    },
+                    {
+                        id: "oj-11",
+                        name: "Chicken Crispy | isi 750 gr",
+                        category: "makanan",
+                        desc: "Ayam goreng tepung super kriuk dengan daging yang tetap juicy dan empuk. Cocok jadi lauk praktis atau cemilan gurih kapan saja!",
+                        price: 35000,
+                        image: "https://i.ibb.co.com/fzJK2Gpy/Screenshot-2026-09-18-224905.png"
+                    },
+                     {
+                        id: "oj-12",
+                        name: "Chicken Katsu | isi 500 gr",
+                        category: "makanan",
+                        desc: "Daging ayam fillet pilihan dibalut tepung panir renyah berkualitas. Praktis, lezat, dan pas banget dinikmati dengan saus favoritmu!",
+                        price: 50000,
+                        image: "https://i.ibb.co.com/XfxH5X1C/Screenshot-2026-09-18-225647.png"
+                    },
+                    {
+                        id: "oj-13",
+                        name: "Egg Chicken Roll | isi 10 pcs",
+                        category: "makanan",
+                        desc: "Olahan ayam gulung berbalut telur tipis yang gurih dan lembut di mulut. Rasanya lezat banget mirip menu restoran jepang ternama!",
+                        price: 30000,
+                        image: "https://i.ibb.co.com/PvvBGcFw/Screenshot-2026-09-18-230110.png"
+                    },
+                    {
+                        id: "oj-14",
+                        name: "Risoles Smooked Beef | isi 5 pcs",
+                        category: "makanan",
+                        desc: "Kulit risol lembut berisi lezatnya daging asap dan keju creamy. Digoreng garing renyah, pas banget buat teman ngemil siang hari!",
+                        price: 35000,
+                        image: "https://i.ibb.co.com/1GZVs8yq/Screenshot-2026-09-18-230611.png"
+                    },
+                    {
+                        id: "oj-15",
+                        name: "Risoles Ayam Sayur | isi 5 pcs",
+                        category: "makanan",
+                        desc: "Risoles klasik isi tumisan ayam dan sayuran segar yang padat dan gurih. Selalu jadi rebutan karena rasanya yang juara!",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/JjVPnrkT/Screenshot-2026-09-19-000910.png"
+                    },
+                     {
+                        id: "oj-16",
+                        name: "Kulit Ayam Crispy | isi 650 ml",
+                        category: "makanan",
+                        desc: "Super kriuk, gurih, dan bikin nagih di setiap gigitan! Teman makan nasi hangat atau cemilan santai yang paling dicari.",
+                        price: 50000,
+                        image: "https://i.ibb.co.com/m5mm269Y/Screenshot-2026-09-19-001210.png"
+                    },
+                    {
+                        id: "oj-17",
+                        name: "Rujak Bawang Cincang | isi 400 ml",
+                        category: "makanan",
+                        desc: "Sambal rujak dengan cincangan bawang segar yang pedas, manis, dan nampol banget di lidah. Bikin buah-buahan segar makin mantap disantap!",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/d0mVqD5h/Screenshot-2026-09-19-001454.png"
+                    },
+                    {
+                        id: "oj-18",
+                        name: "Es Rujak | isi 6 pcs",
+                        category: "minuman",
+                        desc: "Perpaduan buah segar dan kuah rujak asam manis pedas yang disajikan dingin. Dijamin langsung segerin harimu seketika!",
+                        price: 15000,
+                        image: "https://i.ibb.co.com/h18LKpKN/Screenshot-2026-09-19-002205.png"
+                    },
+                    {
+                        id: "oj-19",
+                        name: "Sandwich",
+                        category: "makanan",
+                        desc: "Roti lembut dengan isian daging dan sayuran segar pilihan yang kaya nutrisi. Pas banget untuk sarapan praktis atau bekal sehat!",
+                        price: 15000,
+                        image: "https://i.ibb.co.com/SDNfFmNj/Screenshot-2026-09-19-002329.png"
+                    }
+
+                ]
+            },
+            {
+                storeName: " WIJAYANTI",
+                whatsapp: "6287711554079",
+                products: [
+                    {
+                        id: "kl-1",
+                        name: "Wajik Perloyang",
+                        category: "makanan",
+                        desc: "Manis legit dan pulennya pas. Cocok buat teman ngopi sore!",
+                        price: 170000,
+                        image: "https://i.ibb.co.com/215pftkc/Whats-App-Image-2026-10-07-at-12-58-20.jpg"
+                    },
+                    {
+                        id: "kl-2",
+                        name: "Kue Lapis Perloyang",
+                        category: "makanan",
+                        desc: "Kenyal, manisnya pas, dan berlapis legit. Wajib coba!",
+                        price: 170000,
+                        image: "https://i.ibb.co.com/215pftkc/Whats-App-Image-2026-10-07-at-12-58-20.jpg"
+                    },
+                    {
+                        id: "kl-3",
+                        name: "Talam",
+                        category: "makanan",
+                        desc: "Perpaduan gurih santan dan manisnya lumer di mulut.",
+                        price: 6000,
+                        image: "https://i.ibb.co.com/215pftkc/Whats-App-Image-2026-10-07-at-12-58-20.jpg"
+                    },
+                ]
+            },
+            {
+                storeName: "Aneka Keripik NB 13 Tirto",
+                whatsapp: "6281548017660",
+                products: [
+                    {
+                        id: "pt-1",
+                        name: "Singkong",
+                        category: "makanan",
+                        desc: "Super renyah dengan bumbu gurih meresap. Teman santai paling pas!",
+                        price: 10000,
+                        image: "https://i.ibb.co.com/zV7jT4Pt/Screenshot-2026-10-07-130752.png"
+                    },
+                    {
+                        id: "pt-2",
+                        name: "Talas",
+                        category: "makanan",
+                        desc: "Irisan talas pilihan yang renyah dan gurih alami. Bikin ketagihan!",
+                        price: 10000,
+                        image: "https://i.ibb.co.com/zV7jT4Pt/Screenshot-2026-10-07-130752.png"
+                    },
+                     {
+                        id: "pt-3",
+                        name: "Sukun",
+                        category: "makanan",
+                        desc: "Manis gurih khas buah sukun asli, renyah di setiap gigitan.",
+                        price: 10000,
+                        image: "https://i.ibb.co.com/zV7jT4Pt/Screenshot-2026-10-07-130752.png"
+                    },
+
+                ]
+            },
+            {
+                storeName: "Siomay Hot Plate",
+                whatsapp: "62895634540909",
+                products: [
+                    {
+                        id: "kt-1",
+                        name: "Simple K",
+                        category: "makanan",
+                        desc: "Menu praktis, lezat, dan pas buat ganjal perut saat lapar melanda. Simple tapi nikmatnya juara!",
+                        price: 10000,
+                        image: "https://i.ibb.co.com/7xTdHtr6/Screenshot-2026-10-07-133300.png"
+                    },
+                    {
+                        id: "kt-2",
+                        name: "Mindo Mentai",
+                        category: "makanan",
+                        desc: "Perpaduan gurihnya saus mentai creamy dengan isian mantap khas rumahan. Sekali gigit langsung lumer di mulut!",
+                        price: 15000,
+                        image: "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/b9105fb7-b878-401e-8663-3684edb7e314_Go-Biz_20230302_213926.jpeg"
+                    },
+                    {
+                        id: "kt-3",
+                        name: "Siomay Mentai",
+                        category: "makanan",
+                        desc: "Siomay lembut berpadu sempurna dengan saus mentai creamy yang di-torch harum. Sensasi gurih modern yang bikin nagih!",
+                        price: 20000,
+                        image: "https://akcdn.detik.net.id/visual/2020/03/13/74432f2c-2aa4-4165-b453-e35bca5ff644_11.jpeg?w=480&q=90"
+                    },
+                    {
+                        id: "kt-4",
+                        name: "Siomay Kuah",
+                        category: "makanan",
+                        desc: "Siomay lembut dalam balutan kuah kaldu hangat yang gurih dan segar. Cocok banget dinikmati pas cuaca adem!",
+                        price: 18000,
+                        image: "https://image.idn.media/post/20200916/somay-75104d61cfb326ff3329afc7530f4de1.jpg"
+                    },
+                    {
+                        id: "kt-5",
+                        name: "Siomay Bakar",
+                        category: "makanan",
+                        desc: "Aroma bakaran khas dengan olesan bumbu gurih meresap sampai ke dalam. Beda dari siomay biasa, wajib coba!",
+                        price: 12000,
+                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnKDsh5OnTt-UaQmWsQzJCH9n-swJLHPql9T0C2m4p1SIyCz9gHkd9z9Q&s=10"
+                    },
+                    {
+                        id: "kt-6",
+                        name: "Siomay Komplit",
+                        category: "makanan",
+                        desc: "Puas banget! Isian komplit dengan bumbu kacang kental yang gurih, manis, dan pas di lidah.",
+                        price: 25000,
+                        image: "https://i.ibb.co.com/PBLVzDn/Screenshot-2026-10-07-134655.png"
+                    },
+                ]
+            },
+            {
+                storeName: "Novita Snack",
+                whatsapp: "6281392200168",
+                products: [
+                    {
+                        id: "mg-1",
+                        name: "Pastel | isi 5",
+                        category: "makanan",
+                        desc: "Kulit renyah dengan isian padat gurih di dalam. Teman ngeteh paling pas!",
+                        price: 20000,
+                        image: "https://i.ibb.co.com/7Jnn5WTn/Whats-App-Image-2026-10-07-at-18-45-55.jpg"
+                    },
+                    {
+                        id: "mg-2",
+                        name: "Bakpou isi Kacang ijo",
+                        category: "makanan",
+                        desc: "Roti bakpao lembut mengepul dengan isian pasta kacang hijau yang manis dan legit.",
+                        price: 8000,
+                        image: "https://i.ibb.co.com/TBHX8jcS/Whats-App-Image-2026-10-07-at-18-45-56.jpg"
+                    },
+                    {
+                        id: "mg-3",
+                        name: "Bakpou isi Coklat",
+                        category: "makanan",
+                        desc: "Tekstur super lembut berpadu isian coklat lumer di dalam. Favorit anak-anak!",
+                        price: 8000,
+                        image: "https://i.ibb.co.com/TBHX8jcS/Whats-App-Image-2026-10-07-at-18-45-56.jpg"
+                    },
+                ]
+            },
+            {
+                storeName: "Singkong Keju Crispy",
+                whatsapp: "6281548017660",
+                products: [
+                    {
+                        id: "tp-1",
+                        name: "Singkong Crispy Ori",
+                        category: "makanan",
+                        desc: "Luar renyah di luar, empuk pulen di dalam! Camilan gurih paling pas buat teman ngopi atau ngeteh santai.",
+                        price: 12000,
+                        image: "https://asset.kompas.com/crops/dj4gpUo7JCa-kC-0udwcmbLXD_8=/0x31:1058x737/1200x800/data/photo/2025/08/26/68ad225613db6.jpg"
+                    },
+                    {
+                        id: "tp-2",
+                        name: "Singkong Crispy Rasa Balado, Jagung, BBQ",
+                        category: "makanan",
+                        desc: "Luar renyah di luar, empuk pulen di dalam! Camilan gurih paling pas buat teman ngopi atau ngeteh santai.",
+                        price: 12000,
+                        image: "https://asset.kompas.com/crops/4trUEBEZ63-CmVoPpMX_fLG9nYk=/0x285:750x785/1200x800/data/photo/2022/12/22/63a38fafc2de0.jpeg"
+                    },
+                    {
+                        id: "tp-3",
+                        name: "Singkong Crispy Rasa Susu,Coklat, Keju",
+                        category: "makanan",
+                        desc: "Luar renyah di luar, empuk pulen di dalam! Camilan gurih paling pas buat teman ngopi atau ngeteh santai.",
+                        price: 15000,
+                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCJSgqo_2Eo8aWES3evFiCMZkWvZowvsgwB8NbyLl1dfD3To56VaZXnHGz&s=10"
+                    },
+
+                ]
+            },
+            {
+                storeName: "Lusia'S",
+                whatsapp: "6282322400712",
+                products: [
+                    {
+                        id: "lo-1",
+                        name: "Mooncake",
+                        category: "makanan",
+                        desc: "Kulit lembut dengan isian padat, manis, dan legit pas di lidah. Spesial dibuat rumahan untuk momen santai atau hadiah terbaik.",
+                        price: 9000,
+                        image: "https://i.ibb.co.com/0jc7bLCy/Screenshot-2026-10-08-003036.png"
+                    },
+                    {
+                        id: "lo-2",
+                        name: "Wingko Babad",
+                        category: "makanan",
+                        desc: "Manis legit, gurih kelapa asli, dengan tekstur kenyal khas tradisional. Nikmat banget buat teman ngopi sore!",
+                        price: 3500,
+                        image: "https://i.ibb.co.com/m5KNsBLR/Screenshot-2026-10-08-003713.png"
+                    },
+                    {
+                        id: "lo-3",
+                        name: "Kue Lumpur",
+                        category: "makanan",
+                        desc: "Teksturnya super lembut, lumer di mulut, dengan aroma wangi khas dan kismis manis di atasnya. Manisnya pas banget!",
+                        price: 3500,
+                        image: "https://i.ibb.co.com/j9c5qqfs/Screenshot-2026-10-08-003950.png"
+                    },
+                    {
+                        id: "lo-4",
+                        name: "Puding Roti Zebra",
+                        category: "makanan",
+                        desc: "Lembut, manisnya pas, dengan motif zebra cantik yang menggugah selera. Dessert segar penutup hari yang paling pas!",
+                        price: 3500,
+                        image: "https://i.ibb.co.com/8Dr3PPsF/Screenshot-2026-10-08-004430.png"
+                    },
+                    { id: "lo-5",
+                        name: "Lumpur Surga",
+                        category: "makanan",
+                        desc: "Perpaduan lapisan pandan hijau yang lembut legit dan gurihnya santan di atasnya. Benar-benar lumer di mulut dan nagih banget!",
+                        price: 4000,
+                        image: "https://i.ibb.co.com/9HctWTDs/Screenshot-2026-10-08-004629.png"
+                    },
+                    { id: "lo-6",
+                        name: "Cake Pisang",
+                        category: "makanan",
+                        desc: "Harum pisang asli di setiap gigitan, teksturnya empuk dan lembut banget. Teman ngeteh paling juara!",
+                        price: 3500,
+                        image: "https://i.ibb.co.com/JbJjPTH/Screenshot-2026-10-08-011400.png"
+                    },
+                    { id: "lo-7",
+                        name: "Bika Ambon Teflon",
+                        category: "makanan",
+                        desc: "Bersarang sempurna, beraroma harum khas, dengan tekstur kenyal dan lembut di setiap gigitan. Manisnya pas, teman ngeteh paling mewah!",
+                        price: 4000,
+                        image: "https://i.ibb.co.com/Vcjdwbzn/Screenshot-2026-10-08-011618.png"
+                    },
+                     { id: "lo-8",
+                        name: "Lapis Tapioka / loyang",
+                        category: "makanan",
+                        desc: "Kenyal, legit, dan manisnya pas! Jajanan tradisional favorit yang asyik dikupas lapis demi lapis.",
+                        price: 75000,
+                        image: "https://i.ibb.co.com/4w3BNYph/Screenshot-2026-10-08-012028.png"
+                    },
+                    { id: "lo-9",
+                        name: "Macaroni Schottel",
+                        category: "makanan",
+                        desc: "Paduan makaroni lembut, daging pilihan, dan lelehan keju gurih yang dipanggang sempurna. Creamy dan nagih di setiap suapan!.",
+                        price: 5500,
+                        image: "https://i.ibb.co.com/Kx6wzsyn/Screenshot-2026-10-08-012220.png"
+                    },
+                    { id: "lo-10",
+                        name: "Brownies / loyang",
+                        category: "makanan",
+                        desc: "Lembut di dalam dengan tekstur fudgy dan rasa cokelat pekat yang nendang banget. Manisnya pas, teman ngopi atau ngeteh paling juara!",
+                        price: 65000,
+                        image: "https://i.ibb.co.com/nMfcdLSF/Screenshot-2026-10-08-012552.png"
+                    },
+                    { id: "lo-11",
+                        name: "Puding Mutiara",
+                        category: "makanan",
+                        desc: "Manis, segar, dengan butiran mutiara kenyal yang cantik di dalam puding lembut. Dessert dingin yang paling pas untuk sejukkan hari!",
+                        price: 3500,
+                        image: "https://i.ibb.co.com/gNSStrQ/Screenshot-2026-10-08-012906.png"
+                    },
+                     { id: "lo-12",
+                        name: "Nagasari",
+                        category: "makanan",
+                        desc: "Lembutnya adonan tepung beras dan santan dengan isian pisang manis di dalamnya, terbungkus rapi daun pisang. Jajanan tradisional penuh kenangan yang selalu bikin rindu!",
+                        price: 3500,
+                        image: "https://i.ibb.co.com/vxgj7TwK/Screenshot-2026-10-08-013119.png"
+                    },
+                     { id: "lo-13",
+                        name: "Aneka Nasi Bakar",
+                        category: "makanan",
+                        desc: "Nasi gurih berempah dengan beragam pilihan isian lezat, terbungkus daun pisang lalu dibakar harum. Nikmat disantap selagi hangat!",
+                        price: 15000,
+                        image: "https://buckets.sasa.co.id/v1/AUTH_Assets/Assets/p/website/medias/page_medias/Nasi_Liwet_Bakar_.jpeg"
+                    },
+                    { id: "lo-14",
+                        name: "kimbab",
+                        category: "makanan",
+                        desc: "Gulungan nasi ala Korea dengan isian sayuran segar, telur, dan protein gurih yang dibalut nori harum. Praktis, sehat, dan mengenyangkan!",
+                        price: 20000,
+                        image: "https://img-global.cpcdn.com/recipes/12ff5e603d9d2ef9/680x781cq80/kimbab-gimbab-korean-sushi-roll-foto-resep-utama.jpg"
+                        
+                    },
+                ]
+            }
+        ];
+
+        // Load storesData dari localStorage atau gunakan data awal
+        let storesData = JSON.parse(localStorage.getItem('lapak_stores_data')) || initialStoresData;
+
+        let cart = [];
+        let currentStoreFilter = 'ALL';
+        let currentCategoryFilter = 'ALL';
+
+        function saveStoresToLocalStorage() {
+            localStorage.setItem('lapak_stores_data', JSON.stringify(storesData));
+        }
+
+        function renderCategoryFilters() {
+            const container = document.getElementById('category-filters');
+            container.innerHTML = '';
+
+            const categories = [
+                { id: 'ALL', name: 'Semua Kategori' },
+                { id: 'makanan', name: '🍔 Makanan' },
+                { id: 'minuman', name: '🥤 Minuman' }
+            ];
+
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = `filter-btn ${currentCategoryFilter === cat.id ? 'active' : ''}`;
+                btn.textContent = cat.name;
+                btn.onclick = () => filterCategory(cat.id);
+                container.appendChild(btn);
+            });
+        }
+
+        function renderStoreFilters() {
+            const filterContainer = document.getElementById('store-filters');
+            filterContainer.innerHTML = '';
+
+            const btnAll = document.createElement('button');
+            btnAll.className = `filter-btn ${currentStoreFilter === 'ALL' ? 'active' : ''}`;
+            btnAll.textContent = 'Semua Toko';
+            btnAll.onclick = () => filterStore('ALL');
+            filterContainer.appendChild(btnAll);
+
+            storesData.forEach(store => {
+                const btn = document.createElement('button');
+                btn.className = `filter-btn ${currentStoreFilter === store.storeName ? 'active' : ''}`;
+                btn.textContent = store.storeName;
+                btn.onclick = () => filterStore(store.storeName);
+                filterContainer.appendChild(btn);
+            });
+        }
+
+        function populateStoreSelect() {
+            const selectElem = document.getElementById('target-store-select');
+            if(!selectElem) return;
+            selectElem.innerHTML = '';
+            storesData.forEach(store => {
+                const opt = document.createElement('option');
+                opt.value = store.storeName;
+                opt.textContent = store.storeName;
+                selectElem.appendChild(opt);
+            });
+        }
+
+        function createProductCardHTML(prod, storeName) {
+            const categoryLabel = prod.category === 'minuman' ? '🥤 Minuman' : '🍔 Makanan';
+            return `
+                <div class="product-card">
+                    <div>
+                        <div class="product-img-wrapper">
+                            <img src="${prod.image}" alt="${prod.name}" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <div class="badges-container">
+                                <span class="store-badge">${storeName}</span>
+                                <span class="category-badge">${categoryLabel}</span>
+                            </div>
+                            <div class="product-name">${prod.name}</div>
+                            <div class="product-desc">${prod.desc}</div>
+                            <div class="product-price">Rp ${prod.price.toLocaleString('id-ID')}</div>
+                        </div>
+                    </div>
+                    <div class="product-action">
+                        <div class="qty-input-group">
+                            <button type="button" onclick="adjustQty('${prod.id}', -1)">-</button>
+                            <input type="number" id="qty-${prod.id}" class="qty-input" value="1" min="1" max="20" readonly>
+                            <button type="button" onclick="adjustQty('${prod.id}', 1)">+</button>
+                        </div>
+                        <button class="btn-add" onclick="addToCart('${prod.id}')">+ Tambah</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCatalog() {
+            const container = document.getElementById('catalog-container');
+            container.innerHTML = '';
+
+            const makananList = [];
+            const minumanList = [];
+
+            storesData.forEach(store => {
+                if (currentStoreFilter !== 'ALL' && currentStoreFilter !== store.storeName) return;
+
+                store.products.forEach(prod => {
+                    if (currentCategoryFilter !== 'ALL' && currentCategoryFilter !== prod.category) return;
+
+                    const productData = { prod, storeName: store.storeName };
+                    if (prod.category === 'minuman') {
+                        minumanList.push(productData);
+                    } else {
+                        makananList.push(productData);
+                    }
+                });
+            });
+
+            if (makananList.length === 0 && minumanList.length === 0) {
+                container.innerHTML = `<p style="text-align: center; color: #a89485; padding: 2.5rem 0;">Tidak ada produk yang cocok dengan filter pilihan Anda.</p>`;
+                return;
+            }
+
+            if (makananList.length > 0) {
+                const makananTitle = document.createElement('div');
+                makananTitle.className = 'category-section-title';
+                makananTitle.innerHTML = `🍔 Makanan (${makananList.length})`;
+                container.appendChild(makananTitle);
+
+                const makananGrid = document.createElement('div');
+                makananGrid.className = 'catalog-grid';
+                makananGrid.innerHTML = makananList.map(item => createProductCardHTML(item.prod, item.storeName)).join('');
+                container.appendChild(makananGrid);
+            }
+
+            if (minumanList.length > 0) {
+                const minumanTitle = document.createElement('div');
+                minumanTitle.className = 'category-section-title';
+                minumanTitle.innerHTML = `🥤 Minuman (${minumanList.length})`;
+                container.appendChild(minumanTitle);
+
+                const minumanGrid = document.createElement('div');
+                minumanGrid.className = 'catalog-grid';
+                minumanGrid.innerHTML = minumanList.map(item => createProductCardHTML(item.prod, item.storeName)).join('');
+                container.appendChild(minumanGrid);
+            }
+        }
+
+        function adjustQty(productId, change) {
+            const input = document.getElementById(`qty-${productId}`);
+            if (!input) return;
+            let val = parseInt(input.value) + change;
+            if (val < 1) val = 1;
+            if (val > 20) {
+                val = 20;
+                alert("Maksimal pembelian untuk item ini adalah 20 pcs.");
+            }
+            input.value = val;
+        }
+
+        function filterCategory(category) {
+            currentCategoryFilter = category;
+            renderCategoryFilters();
+            renderCatalog();
+        }
+
+        function filterStore(storeName) {
+            currentStoreFilter = storeName;
+            renderStoreFilters();
+            renderCatalog();
+        }
+
+        /* Handler Modal Toko Baru & Tambah Menu */
+        function openAddStoreModal() {
+            document.getElementById('add-store-modal').style.display = 'flex';
+        }
+        function closeAddStoreModal() {
+            document.getElementById('add-store-modal').style.display = 'none';
+            document.getElementById('add-store-form').reset();
+        }
+
+        function openAddMenuModal() {
+            populateStoreSelect();
+            document.getElementById('add-menu-modal').style.display = 'flex';
+        }
+        function closeAddMenuModal() {
+            document.getElementById('add-menu-modal').style.display = 'none';
+            document.getElementById('add-menu-form').reset();
+        }
+
+        function processAddStore(event) {
+            event.preventDefault();
+            const name = document.getElementById('new-store-name').value.trim();
+            const wa = document.getElementById('new-store-wa').value.trim();
+
+            const existing = storesData.find(s => s.storeName.toLowerCase() === name.toLowerCase());
+            if (existing) {
+                alert("Nama toko sudah terdaftar di sistem!");
+                return;
+            }
+
+            storesData.push({
+                storeName: name,
+                whatsapp: wa,
+                products: []
+            });
+
+            saveStoresToLocalStorage();
+            renderStoreFilters();
+            renderCatalog();
+            closeAddStoreModal();
+            alert(`Toko baru "${name}" berhasil didaftarkan!`);
+        }
+
+        function processAddMenu(event) {
+            event.preventDefault();
+            const storeName = document.getElementById('target-store-select').value;
+            const name = document.getElementById('new-menu-name').value.trim();
+            const category = document.getElementById('new-menu-category').value;
+            const price = parseInt(document.getElementById('new-menu-price').value);
+            const desc = document.getElementById('new-menu-desc').value.trim();
+            const image = document.getElementById('new-menu-img').value.trim();
+
+            const targetStore = storesData.find(s => s.storeName === storeName);
+            if (!targetStore) {
+                alert("Toko tidak ditemukan!");
+                return;
+            }
+
+            const newId = 'prod-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+            targetStore.products.push({
+                id: newId,
+                name: name,
+                category: category,
+                desc: desc,
+                price: price,
+                image: image
+            });
+
+            saveStoresToLocalStorage();
+            renderCatalog();
+            closeAddMenuModal();
+            alert(`Menu "${name}" berhasil ditambahkan ke toko ${storeName}!`);
+        }
+
+        function addToCart(productId) {
+            let foundProduct = null;
+            let foundStore = null;
+
+            for (const store of storesData) {
+                const prod = store.products.find(p => p.id === productId);
+                if (prod) {
+                    foundProduct = prod;
+                    foundStore = store.storeName;
+                    break;
+                }
+            }
+
+            if (!foundProduct) return;
+
+            const qtyInput = document.getElementById(`qty-${productId}`);
+            const qtyToAdd = parseInt(qtyInput.value) || 1;
+
+            const existingIndex = cart.findIndex(item => item.id === foundProduct.id);
+
+            if (existingIndex > -1) {
+                let newQty = cart[existingIndex].qty + qtyToAdd;
+                if (newQty > 20) {
+                    alert(`Jumlah pesanan di keranjang untuk item ini telah dibatasi maksimal 20 pcs.`);
+                    cart[existingIndex].qty = 20;
+                } else {
+                    cart[existingIndex].qty = newQty;
+                }
+            } else {
+                cart.push({
+                    id: foundProduct.id,
+                    name: foundProduct.name,
+                    price: foundProduct.price,
+                    storeName: foundStore,
+                    qty: qtyToAdd > 20 ? 20 : qtyToAdd
+                });
+            }
+
+            updateCartUI();
+            alert(`${foundProduct.name} (${qtyToAdd} pcs) berhasil ditambahkan ke keranjang.`);
+            qtyInput.value = 1;
+        }
+
+        function updateCartUI() {
+            const cartCountElem = document.getElementById('cart-count');
+            const cartItemsElem = document.getElementById('cart-items');
+            const cartTotalElem = document.getElementById('cart-total-price');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            if (cartCountElem) cartCountElem.innerText = totalItems;
+
+            if (!cartItemsElem || !cartTotalElem) return;
+
+            if (cart.length === 0) {
+                cartItemsElem.innerHTML = "<p style='text-align: center; color: #a89485; padding: 1.5rem 0;'>Keranjang belanja masih kosong.</p>";
+                cartTotalElem.innerText = "Rp 0";
+                return;
+            }
+
+            let itemsHTML = "";
+            let totalPrice = 0;
+
+            cart.forEach((item, idx) => {
+                const subtotal = item.price * item.qty;
+                totalPrice += subtotal;
+
+                itemsHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong> <br>
+                            <small style="color: #7a6558;">[${item.storeName}]</small><br>
+                            <span style="font-size: 0.88rem; color: #4a2e1b;">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty} pcs</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-weight: 700; color: #2c221e;">Rp ${subtotal.toLocaleString('id-ID')}</span>
+                            <button onclick="removeFromCart(${idx})" style="background:#d9534f; color:white; border:none; border-radius:6px; width:26px; height:26px; cursor:pointer; font-weight:bold;">&times;</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartItemsElem.innerHTML = itemsHTML;
+            cartTotalElem.innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function openCart() {
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        function processCheckout(event) {
+            event.preventDefault();
+
+            if (cart.length === 0) {
+                alert("Keranjang Anda masih kosong!");
+                return;
+            }
+
+            const name = document.getElementById('cust-name').value;
+            const address = document.getElementById('cust-address').value;
+            const payment = document.getElementById('payment-method').value;
+
+            const ordersByStore = {};
+
+            cart.forEach(item => {
+                if (!ordersByStore[item.storeName]) {
+                    ordersByStore[item.storeName] = [];
+                }
+                ordersByStore[item.storeName].push(item);
+            });
+
+            Object.keys(ordersByStore).forEach(storeName => {
+                const storeObj = storesData.find(s => s.storeName === storeName);
+                if (!storeObj) return;
+
+                const storeItems = ordersByStore[storeName];
+                let grandTotal = 0;
+
+                let message = `Halo *${storeName}*, saya ingin memesan produk berikut dari *Lapak Santo Petrus Pekalongan*:\n\n`;
+                
+                storeItems.forEach((item, i) => {
+                    const subtotal = item.price * item.qty;
+                    grandTotal += subtotal;
+                    message += `${i + 1}. *${item.name}*\n`;
+                    message += `   Jumlah: ${item.qty} x Rp ${item.price.toLocaleString('id-ID')} = Rp ${subtotal.toLocaleString('id-ID')}\n\n`;
+                });
+
+                message += `*Total Pembayaran:* Rp ${grandTotal.toLocaleString('id-ID')}\n`;
+                message += `-----------------------------------\n`;
+                message += `*Data Pemesan:*\n`;
+                message += `• Nama: ${name}\n`;
+                message += `• Alamat / Catatan: ${address}\n`;
+                message += `• Metode Pembayaran: ${payment}\n\n`;
+                message += `Mohon konfirmasi instruksi pembayaran dan proses pesanan ini ya, terima kasih!`;
+
+                const encodedMessage = encodeURIComponent(message);
+                const waUrl = `https://wa.me/${storeObj.whatsapp}?text=${encodedMessage}`;
+                
+                window.open(waUrl, '_blank');
+            });
+
+            cart = [];
+            updateCartUI();
+            closeCart();
+            document.getElementById('checkout-form').reset();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategoryFilters();
+            renderStoreFilters();
+            renderCatalog();
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>
